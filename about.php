@@ -1,0 +1,107 @@
+<?php
+session_start();
+require 'admin/dist/functions.php';
+
+$produk_produk = query("SELECT * FROM produk");
+
+if (isset($_GET["cari"])) {
+  $produk_produk = cariProduk($_GET["keyword"]);
+}
+
+?>
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <title>gogoBeauty</title>
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700">
+  <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+  <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
+  <link rel="stylesheet" href="assets/css/Check-Out-Page-V100.css">
+  <link rel="stylesheet" href="assets/css/ebs-contact-form-1.css">
+  <link rel="stylesheet" href="assets/css/ebs-contact-form.css">
+  <link rel="stylesheet" href="assets/css/Header-Blue.css">
+  <link rel="stylesheet" href="assets/css/Login-Form-Clean.css">
+  <link rel="stylesheet" href="assets/css/Navigation-with-Search.css">
+  <link rel="stylesheet" href="assets/css/Pretty-Product-List.css">
+  <link rel="stylesheet" href="assets/css/Profile-Edit-Form-1.css">
+  <link rel="stylesheet" href="assets/css/Profile-Edit-Form.css">
+  <link rel="stylesheet" href="assets/css/Registration-Form-with-Photo.css">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/WOWSlider-about-us-1.css">
+  <link rel="stylesheet" href="assets/css/WOWSlider-about-us-2.css">
+  <link rel="stylesheet" href="assets/css/WOWSlider-about-us.css">
+</head>
+
+
+<body style="font-size: 18px;">
+  <nav class="navbar navbar-light navbar-expand-md navigation-clean-button" style="background-color: #98FB98;">
+    <div class="container"><img src="assets/img/herbeauty.png" style="width: 5%;"><a class="navbar-brand" href="index.php" style="font-size: 20px;">gogoBeauty</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="navcol-1">
+        <ul class="nav navbar-nav mr-auto" style="font-size: medium;">
+          <li class="h5" role="presentation"><a class="nav-link" href="index.php">HOME</a></li>
+          <li class="h5" role="presentation"><a class="nav-link" href="about.php">ABOUT US</a></li>
+        </ul>
+        <form action="" method="get" class="w-50">
+          <input type="text" name="keyword" placeholder="Cari Produk.." autocomplete="off" style="width: 50%;">
+          <a class="btn btn-light action-button" namespace="sada" role="button" href="#" style="background-color: rgba(206,207,234,0);">
+            <button type="submit" name="cari">
+              <i class="fa fa-search" style="width: fit-content;"></i>
+            </button>
+          </a>
+          <a class="btn btn-light" role="button" href="Keranjang.php">
+            <i class="fa fa-shopping-cart" style="font-size: 20px;"></i>
+          </a>
+        </form>
+        <span class="navbar-text actions">
+
+          <span class="navbar-text actions">
+            <?php if (isset($_SESSION['loginPelanggan'])) : ?>
+              <div class="btn-group">
+                <a class="btn btn-dark" href="#"><i class="fa fa-user"></i> <?= $_SESSION['loginPelanggan']['Nama'] ?></a>
+                <a class="btn btn-dark" data-toggle="dropdown" href="#">
+                  <span class="fa fa-caret-down"></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a href="riwayat.php"><i class="fa fa-pencil fa-fw"></i> Riwayat</a></li>
+                  <li><a href="admin/dist/logout.php"><i class="fa fa-ban fa-fw"></i> Keluar</a></li>
+                </ul>
+              </div>
+            <?php else : ?>
+              <a class="btn btn-light action-button w-5 p-2 mr-2" role="button" href="login.php">Masuk</a>
+              <a class="btn btn-light action-button w-5 p-2" role="button" href="register.php">Daftar</a>
+            <?php endif ?>
+          </span>
+        </span>
+      </div>
+    </div>
+  </nav>
+
+  <p>
+    <img src="assets\img\bg.png" class="img-fluid" alt="ax-width: 100%; height: auto;">
+    <!-- <img src="assets\img\bg.png"> -->
+  </p>
+  <figure class="text-center">
+    <blockquote class="blockquote">
+      <p>Yang herbal lebih meyakinkan, yakan?!</p>
+    </blockquote>
+    <figcaption class="blockquote-footer">
+      gogoBeauty <cite title="">tiens</cite>
+    </figcaption>
+  </figure>
+  <figure class="text-center">
+    <blockquote class="blockquote">
+      <p>find us on Instagram</p>
+    </blockquote>
+    <figcaption class="blockquote-footer">
+      <a href="https://www.instagram.com/tiens_beautystore/">@tiens_beautystore</a>
+      <cite title="">tiens</cite>
+
+    </figcaption>
+  </figure>
+</body>
+
+</html>
